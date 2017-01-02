@@ -1,0 +1,9 @@
+---
+---
+{% if entry.doi %}
+<a href="http://dx.doi.org/{{entry.doi}}">{{ reference }}</a>
+{% elsif entry.url %}
+<a href="{{entry.url}}">{{ reference }}</a>
+{% else %}
+{{ reference }}
+{% endif %}

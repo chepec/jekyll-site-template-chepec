@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <div class="page-content">
+      <div class="wrapper">
+        {{ content }}
+        {% include comments.html %}
+      </div>
+    </div>
+
+    {% include footer.html %}
+
+    <!-- Jekyll TOC -->
+    <!-- https://github.com/ghiculescu/jekyll-table-of-contents -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/js/toc.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+	$(document).ready(function() {
+	   $('#toc').toc({
+	      listType: 'ul',
+              minimumHeaders: 3,
+              showEffect: 'slideDown'
+           });
+	});
+    </script>
+
+  </body>
+
+</html>

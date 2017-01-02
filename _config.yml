@@ -1,0 +1,47 @@
+# Site settings
+title: chepec
+tagline: tagline
+email: you@email.com
+description: "Site description"
+url: "https://yourdomain.se"
+twitter_username: twitterhandle
+github_username: githubname
+
+# URI style
+# extensionless permalinks
+# this works in combination with jekyll-clean-urls (plugins/clean_urls.rb),
+# and Options MultiViews set in the Apache conf
+permalink: /:year/:month/:day/:title
+
+gems:
+   - jekyll-pandoc
+   - jekyll/scholar
+   - jekyll-redirect-from
+   - jekyll-timeago
+
+markdown: pandoc
+pandoc:
+  extensions:
+    # If the --smart option is specified, pandoc will produce typographically correct output,
+    # converting straight quotes to curly quotes, --- to em-dashes, -- to en-dashes,
+    # and ... to ellipses. Nonbreaking spaces are inserted after certain abbreviations, such as “Mr.”
+    - smart
+    # to take effect reference to mathjax JS code must also be placed in _includes/head.html or similar
+    - mathjax
+
+scholar:
+  style: apa
+  locale: en
+
+  sort_by: none
+  order: ascending
+
+  source: /complete/path/chepec-public/_bibliography
+  # 160321 switched from references.bib which was manually maintained to
+  # library.bib which is automatically copied from Mendeley's exported library
+  bibliography: library.bib
+  # bibliography_template refers to _layouts/bibliography.html
+  # (contains code that makes ref list item link to DOI or URL)
+  bibliography_template: bibliography
+
+  query: "@*"

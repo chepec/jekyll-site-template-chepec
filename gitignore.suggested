@@ -1,0 +1,22 @@
+## -------
+## This is a suggested .gitignore file.
+## Copy it's contents into your .gitignore file.
+## -------
+
+# Exclude the directory _knitr (useful if you use individual repos for each post)
+_knitr/*
+# if you do exclude _knitr, make sure to NOT exclude _knitr/common
+!_knitr/common/
+
+# the rest is stuff that can safely be excluded from revision control
+assets/
+_bibliography/library.bib
+_cache/
+_plugins/
+figures/
+_posts/
+*.rda
+*.Rproj
+.Rhistory
+.Rproj.user
+favicon.ico

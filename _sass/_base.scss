@@ -1,0 +1,320 @@
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/**
+ * Basic styling
+ */
+body {
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    font-weight: 300;
+    color: $text-color;
+    background-color: $background-color;
+    -webkit-text-size-adjust: 100%;
+}
+
+
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+
+
+/**
+ * Images
+ */
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+
+
+/**
+ * Figures
+ */
+figure > img {
+    display: block;
+    // center figure horizontally -- 160415 /TA
+     margin: 0 auto;
+}
+
+figcaption {
+    font-size: $small-font-size;
+    // display and margin centers caption horizontally
+    // (other methods were tested but did not work). -- 160415 /TA
+    display: table;
+    margin: 0 auto;
+}
+
+
+
+/**
+ * Photo grids: a way to display a bunch of photos/images of varying sizes
+ * with support for adding caption (nest <p>Caption</p> inside div of photogrid).
+ * Note: caption centering and spanning buggy in Firefox, see
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=616436
+ * http://stackoverflow.com/questions/9943558/moz-column-span-all-completely-ignored
+ * /TA 160714
+ */
+.photogrid {
+   /* I tried several approaches to center the entire grid (only an issue when
+    * grid contains few photos, it seems) but none worked. Skip centering for now.
+    * Tested approaches, none worked:
+    * margin: 0 auto;
+    * margin-left: auto; margin-right: auto;
+    * justify-content: center;
+    * display: block;
+    * margin: 0 auto;
+    */
+   -webkit-column-count: 4;
+   -moz-column-count:    4;
+   column-count:         4;
+   -webkit-column-gap:   5px;
+   -moz-column-gap:      5px;
+   column-gap:           5px;
+   // bg colour behind images and caption
+   // helps to connect images and caption, visually
+   // keep it at least until caption spans columns properly in Firefox
+   background:           #eee;
+}
+
+.photogrid img {
+   /* Just in case there are inline attributes */
+   width: 100% !important;
+   height: auto !important;
+   // give each image some vertical padding
+   // (makes for all-around padding with horiz gap above)
+   margin-bottom: 4px;
+}
+
+.photogrid p {
+   // we use a p tag for photogrid captions
+   // span (across all columns) and center caption
+	-webkit-column-span: all;
+   -moz-column-span:    all;
+	column-span:         all;
+	text-align:          center;
+   font-size:           $small-font-size;
+}
+
+
+
+/**
+ * Tables (addition by TA, 160105)
+ * Based on booktabs css from Tufte Jekyll theme
+ * http://clayh53.github.io/tufte-jekyll/
+ */
+table {
+   // center tables and their captions horizontally
+   margin: auto;
+   width: 100%;
+   // the rest of the options are for mimicking booktabs
+   // adds top and bottom borders
+   border-spacing: 0px;
+   border-top: 2px solid $border-color;
+   // slightly lighter bottom border
+   border-bottom: 1.5px solid lighten($border-color, 25%);
+   // add some vertical space after the table
+   margin-bottom: 2ex;
+}
+
+th {
+   // this adds the lighter line below the header row
+   border-bottom: 1px solid $border-color;
+   padding: 0.65ex 0.5em 0.4ex 0.5em;
+   font-weight: normal;
+   text-align: center;
+}
+
+caption {
+   // note that figure use <figcaption>, so not affected by this
+    text-align: center;
+    margin-top: 2ex;
+    // vertical distance between caption and toprow
+    margin-bottom: 0.8ex;
+    caption-side: top;
+}
+
+
+
+/**
+ * Lists
+ */
+ul, ol {
+    margin-left: $spacing-unit;
+}
+
+li {
+    > ul,
+    > ol {
+         margin-bottom: 0;
+    }
+}
+
+
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+
+
+/**
+ * Links
+ */
+a {
+    color: $brand-color;
+    text-decoration: none;
+
+    &:visited {
+        color: darken($brand-color, 15%);
+    }
+
+    &:hover {
+        color: $text-color;
+        text-decoration: underline;
+    }
+}
+
+
+
+/**
+ * Blockquotes
+ */
+blockquote {
+    color: $grey-color;
+    border-left: 4px solid $grey-color-light;
+    padding-left: $spacing-unit / 2;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-style: italic;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+
+/**
+ * Code formatting
+ */
+pre,
+code {
+    font-size: 15px;
+    border: 1px solid $grey-color-light;
+    border-radius: 3px;
+    background-color: #eef;
+}
+
+code {
+    padding: 1px 5px;
+}
+
+pre {
+    padding: 8px 12px;
+    overflow-x: scroll;
+
+    > code {
+        border: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+
+
+/**
+ * Wrapper
+ */
+.wrapper {
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
+    @extend %clearfix;
+
+    @include media-query($on-laptop) {
+        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+        padding-right: $spacing-unit / 2;
+        padding-left: $spacing-unit / 2;
+    }
+}
+
+
+
+/**
+ * Clearfix
+ */
+%clearfix {
+
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+
+
+/**
+ * Icons
+ */
+.icon {
+
+    > svg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+
+        path {
+            fill: $grey-color;
+        }
+    }
+}
+
+
+/**
+ * Responsive videos
+ * - https://github.com/pibby/jekyll-youtube
+ */
+.video figure {
+    position: relative;
+    nowhitespace: afterproperty;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video iframe, .video object, .video embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

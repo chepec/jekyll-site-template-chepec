@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<div class="post">
+
+  <header class="post-header">
+    <h1>{{ page.title }}</h1>
+    {% if page.tags.size > 0 %}
+       {% for tag in page.tags %}
+          <span class="post-tag">{{ tag }}</span>
+       {% endfor %}
+    {% endif %}
+    <p class="meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+  </header>
+
+  <article class="post-content">
+
+    <!-- The following div adds TOC, after title, but before content -->
+    <div id="toc">
+    </div>
+  
+    {{ content }}
+
+    {% if page.tags contains 'lab notebook' %}
+     <div class="lnb-listing"><a href="{{ site.url }}/lab-notebook">&larr;&nbsp;Go back to lab notebook index</a></div>
+    {% endif %}
+
+  </article>
+
+  <ul>
+    {% for format in site.pandoc.outputs %}
+    {% capture extension %}{{ format | first }}{% endcapture %}
+    <li>
+      <a href="{{ extension }}{{ page.url | remove:'.html' }}.{{ extension }}">
+        {{ extension }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+</div>

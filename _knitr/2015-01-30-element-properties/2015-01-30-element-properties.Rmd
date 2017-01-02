@@ -1,0 +1,158 @@
+---
+layout: post
+title: "All available elemental properties plotted as periodic tables"
+date: 2015-01-30 20:00:00 GMT
+tags:
+- periodic table
+- elemental properties
+- ggplot2
+published: true
+comments: true
+---
+
+
+
+## Introduction
+
+In the [previous post](http://chepec.se/2014/11/16/element-data.html) we showed how `ggplot2` can be used to effectively and quickly render a periodic table overlaid with near-arbitrary elemental data.
+
+Let's use this newfound ability to visualise all the datasets we have available to us.
+
+
+```{r packages, echo=T, results='hide', message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(grid)
+library(knitr)
+```
+
+```{r global_options, echo=FALSE, results='hide', message=FALSE}
+options(digits   = 7,
+        width    = 84,
+        continue = " ",
+        prompt   = "> ",
+        warn = 0,
+        stringsAsFactors = FALSE)
+opts_chunk$set(
+   dev        = 'svg',
+	fig.width  = 8.25,
+	fig.height = 4.80,
+   fig.align  = 'center',
+   echo       = FALSE,
+   eval       = TRUE,
+   results    = 'hide',
+   message    = FALSE,
+   warning    = FALSE,
+   tidy       = FALSE)
+```
+
+```{r scripts, echo=FALSE}
+library(common)
+source("../common/continuous-property-as-periodic-table.R")
+source("../common/discrete-property-as-periodic-table.R")
+load("../common/element-data.rda")
+```
+
+
+## Available elemental properties
+
+Some properties are not suited for this type of visualisation, and will be excluded (see `donotplot` vector below). Others are better visualised as discrete variables, although they are numeric in format. Such properties will be converted back to character (see `numericasdiscrete` below).
+
+```{r, echo=T}
+# drop some redundant columns
+values <- values[, -grep(pattern = "^Absolute.*", names(values))]
+units <- units[, -grep(pattern = "^Absolute.*", names(units))]
+# some columns are not suitable for this format of visualisation
+donotplot <-
+   c("Name",
+     "Symbol",
+     "Group",
+     "Graph.Group",
+     "Period",
+     "Graph.Period",
+     "EU_Number",
+     "RTECS_Number",
+     "Alternate_Names",
+     "Electron_Configuration",
+     "CAS_Number",
+     "CID_Number",
+     "Gmelin_Number",
+     "NSC_Number",
+     "Quantum_Numbers",
+     "Space_Group_Name",
+     "Space_Group_Number")
+# some numeric columns are better visualised as discrete variables
+numericasdiscrete <-
+   c("DOT_Hazard_Class",
+     "NFPA_Fire_Rating",
+     "NFPA_Health_Rating",
+     "NFPA_Reactivity_Rating")
+for (i in 1:length(numericasdiscrete)) {
+   values[, which(names(values) == numericasdiscrete[i])] <-
+      as.character(values[, which(names(values) == numericasdiscrete[i])])
+}
+```
+
+
+Here are all the elemental properties that have been deemed suitable for visualisation.
+
+```{r, echo=T, results='markup'}
+str(values)
+```
+
+
+## Properties, visualised
+
+Note: the physical state at which the values are stated are not always determined in this dataset. This is a weakness of the web-scraping algorithm, which does not record the notes accompanying many datapoints. This means that the usability of these plots are limited in scope. If someone has an open, curated dataset of elemental properties available, let me know!
+
+
+We can plot periodic tables of all available properties with just one chunk (using some looping, of course).
+
+```{r, echo=TRUE, results='markup'}
+for (k in 1:dim(values)[2]) {
+   # withhold some columns from plotting
+   if (names(values)[k] %in% donotplot) {
+      next
+   }
+   # numeric or character column?
+   if (class(values[, k]) == "numeric") {
+      p <-
+         continuous_property_as_periodic_table(data = data.frame(
+            Graph.Group = values$Graph.Group,
+            Graph.Period = values$Graph.Period,
+            Symbol = values$Symbol,
+            Property = gsub("_", " ", names(values)[k]),
+            Values = values[, k],
+            Unit = units[, k]))
+      print(p)
+      cat(paste("Summary of", gsub("_", " ", names(values)[k])), "\n")
+      print(summary(values[, k]))
+   }
+   if (class(values[, k]) == "character") {
+      p <-
+         discrete_property_as_periodic_table(data = data.frame(
+            Graph.Group = values$Graph.Group,
+            Graph.Period = values$Graph.Period,
+            Symbol = values$Symbol,
+            Values = values[, k]),
+            scale.title = gsub("_", " ", names(values)[k]),
+            scale.ncol = 3)
+      print(p)
+      cat(paste("Count of", gsub("_", " ", names(values)[k])), "\n")
+      print(count(values, vars = values[, k]))
+   }
+}
+```
+
+
+And that's all for today.
+
+
+
+
+
+## sessionInfo()
+
+```{r results='markup'}
+sessionInfo()
+```
