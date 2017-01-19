@@ -40,9 +40,9 @@ area.corr.factor <- 1 / sensor.area
 
 The sensor area is $\SI{0.7854}{\square\cm}$, and consequently we need to multiply the values we read out with a factor 1.273 to get proper power densities.
 
-![The simple method used to center the power meter's detector]({{site.url}}/assets/images/lnb-160414/power-meter-positioning.jpg)
+![The simple method used to center the power meter's detector]({{site.url}}/lab-notebok/assets/images/lnb-160414/power-meter-positioning.jpg)
 
-![The power meter during a measurement]({{site.url}}/assets/images/lnb-160414/power-meter-measuring.jpg)
+![The power meter during a measurement]({{site.url}}/lab-notebook/assets/images/lnb-160414/power-meter-measuring.jpg)
 
 
 The arc lamp housing is a Newport (Oriel instruments) model 67005, mfd. 2009-07, for lamp power 50--500W.  The tube of the lamp housing is fitted with an AM1.5 filter.
@@ -50,7 +50,7 @@ The housing contains an Xr arc lamp.
 
 The arc lamp power supply is a Newport 69911, set to supply $\SI{200}{\watt}$.
 
-![The power supply to the arc lamp]({{site.url}}/assets/images/lnb-160414/arc-lamp-power-supply.jpg)
+![The power supply to the arc lamp]({{site.url}}/lab-notebook/assets/images/lnb-160414/arc-lamp-power-supply.jpg)
 
 
 
@@ -156,16 +156,21 @@ A video from Newport demonstrating the procedure for switching the lamp in an ar
 
 
 {% highlight text %}
+## Untracked files:
+## 	Untracked:  2016-04-14-arc-lamp-AM-filter.Rproj
+## 
 ## Unstaged changes:
+## 	Modified:   .gitignore
 ## 	Modified:   2016-04-14-arc-lamp-AM-filter.Rmd
+## 	Modified:   distance-vs-power.csv
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## R version 3.3.0 (2016-05-03)
+## R version 3.3.2 (2016-10-31)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 14.04.4 LTS
+## Running under: Ubuntu 14.04.5 LTS
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -179,19 +184,20 @@ A video from Newport demonstrating the procedure for switching the lamp in an ar
 ## [1] methods   grid      stats     graphics  grDevices utils     datasets  base     
 ## 
 ## other attached packages:
-## [1] git2r_0.15.0  ggplot2_2.1.0 knitr_1.13   
+## [1] oceanoptics_0.1.0 common_0.0.0.9002 git2r_0.16.0      ggplot2_2.2.0    
+## [5] knitr_1.15.1     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] labeling_0.3     colorspace_1.2-6 scales_0.4.0     plyr_1.8.3      
-##  [5] magrittr_1.5     formatR_1.4      tools_3.3.0      gtable_0.2.0    
-##  [9] Rcpp_0.12.4      stringi_1.0-1    stringr_1.0.0    munsell_0.4.3   
-## [13] evaluate_0.9
+##  [1] Rcpp_0.12.8      assertthat_0.1   plyr_1.8.4       gtable_0.2.0    
+##  [5] magrittr_1.5     evaluate_0.10    scales_0.4.1     highr_0.6       
+##  [9] stringi_1.1.2    lazyeval_0.2.0   labeling_0.3     tools_3.3.2     
+## [13] stringr_1.1.0    munsell_0.4.3    colorspace_1.3-2 tibble_1.2
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## Linux 3.13.0-79-generic #123-Ubuntu SMP Fri Feb 19 14:27:58 UTC 2016 x86_64
+## Linux 3.13.0-107-generic #154-Ubuntu SMP Tue Dec 20 09:57:27 UTC 2016 x86_64
 {% endhighlight %}
 
 </div>

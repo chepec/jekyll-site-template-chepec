@@ -24,6 +24,7 @@ library(ggplot2)
 library(dplyr)
 library(grid)
 library(knitr)
+library(common)
 ```
 
 ```{r global_options, echo=FALSE, results='hide', message=FALSE}
@@ -47,10 +48,10 @@ opts_chunk$set(
 ```
 
 ```{r scripts, echo=FALSE}
-library(common)
 source("../common/continuous-property-as-periodic-table.R")
 source("../common/discrete-property-as-periodic-table.R")
-load("../common/element-data.rda")
+load("../common/20141116-element-data-values.rda")
+load("../common/20141116-element-data-units.rda")
 ```
 
 

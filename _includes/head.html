@@ -14,13 +14,15 @@
 
   <!-- mathjax -->
   <script type="text/x-mathjax-config">
-    MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
     MathJax.Hub.Config({
       extensions: ["[Contrib]/siunitx/siunitx.js",
-                   "[Contrib]/mhchem/mhchem.js"]
+                   "[Contrib]/mhchem/mhchem.js"],
+		TeX: {
+			equationNumbers: { autoNumber: "AMS" }
+		}
     });
   </script>
-  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js?config=TeX-AMS_CHTML-full">
   </script>
 
 </head>

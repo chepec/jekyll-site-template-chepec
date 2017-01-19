@@ -1,16 +1,14 @@
 # Site settings
 title: chepec
 tagline: tagline
-email: you@email.com
-description: "Site description"
-url: "https://yourdomain.se"
-twitter_username: twitterhandle
-github_username: githubname
+email: taha@chepec.se
+description: "Photoelectrochemistry is the science at the core of solar technology."
+url: "https://chepec.se"
+twitter_username: solarchemist
+github_username: chepec
 
-# URI style
-# extensionless permalinks
-# this works in combination with jekyll-clean-urls (plugins/clean_urls.rb),
-# and Options MultiViews set in the Apache conf
+# URI style - extensionless permalinks
+# this works in combination with Options MultiViews (Apache vhost)
 permalink: /:year/:month/:day/:title
 
 gems:
@@ -19,7 +17,7 @@ gems:
    - jekyll-redirect-from
    - jekyll-timeago
 
-markdown: pandoc
+markdown: Pandoc
 pandoc:
   extensions:
     # If the --smart option is specified, pandoc will produce typographically correct output,
@@ -36,7 +34,7 @@ scholar:
   sort_by: none
   order: ascending
 
-  source: /complete/path/chepec-public/_bibliography
+  source: /media/bay/taha/jekyll/chepec/_bibliography
   # 160321 switched from references.bib which was manually maintained to
   # library.bib which is automatically copied from Mendeley's exported library
   bibliography: library.bib

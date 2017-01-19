@@ -1,4 +1,18 @@
-.Rproj.user
-.Rhistory
+.sass-cache/
+assets/
+_bibliography/library.bib
+_cache/
+_plugins/
+figures/
+_posts/
+## EXCLUDE _knitr (we are using per-post git repos)
+_knitr/*
+## but do NOT exclude the _knitr/common folder
+!_knitr/common/
+.jekyll-metadata
+*.rda
+*.Rproj
 .RData
-.Ruserdata
+.Rhistory
+.Rproj.user
+favicon.ico

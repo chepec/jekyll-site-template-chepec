@@ -21,7 +21,8 @@ permalink: /lab-notebook/
              {% endfor%}
            {% endif %}
 
-           <span class="post-meta">&nbsp;Last modified {{ post.path | file_date | timeago }}</span>
+			<span class="post-meta">&nbsp;Last modified {% capture lastmod_date %}{% last_modified {{ post.path }} %}{% 
+endcapture %}{{ lastmod_date | timeago }}</span>
 
           <h2>
             <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
